@@ -87,9 +87,22 @@ npm run release      # 构建并打包 dist/jeffmind-<version>.zip
 
 ### 发布流程
 
+发布通过 GitHub Actions 自动完成（`.github/workflows/release.yml`）。发布新版本的步骤：
+
 1. 更新 `manifest.json` 和 `package.json` 中的 `version`（如有需要，同时更新 `versions.json`）。
-2. 执行 `npm run release`。
-3. 创建 GitHub Release，tag 与版本号一致（不加 `v` 前缀），并把 `main.js`、`manifest.json`、`styles.css` 作为 Release 附件上传。
+2. 提交这次改动。
+3. 创建并推送与版本号一致的 tag（不加 `v` 前缀）：
+
+   ```bash
+   git tag 0.3.1
+   git push origin 0.3.1
+   ```
+
+工作流随后会在干净的运行器上构建插件、校验 tag 与 `manifest.json` 版本一致，并创建 GitHub Release，自动附上 `main.js`、`manifest.json`、`styles.css`。
+
+如果发布步骤报权限错误，请检查 **Settings → Actions → General → Workflow permissions**，设为允许读写权限。
+
+也可以在本地用 `npm run release` 构建打包（生成 `dist/jeffmind-<version>.zip`）。
 
 ## 许可证
 

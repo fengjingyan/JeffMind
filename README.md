@@ -87,9 +87,22 @@ npm run release      # build and package dist/jeffmind-<version>.zip
 
 ### Releasing
 
+Releases are automated with GitHub Actions (`.github/workflows/release.yml`). To publish a new version:
+
 1. Bump `version` in `manifest.json` and `package.json` (and add the version to `versions.json` if needed).
-2. Run `npm run release`.
-3. Create a GitHub release with the tag equal to the version (no `v` prefix) and upload `main.js`, `manifest.json`, and `styles.css` as release assets.
+2. Commit the change.
+3. Create and push a tag equal to the version (no `v` prefix):
+
+   ```bash
+   git tag 0.3.1
+   git push origin 0.3.1
+   ```
+
+The workflow then builds the plugin on a clean runner, verifies that the tag matches `manifest.json`, and creates a GitHub release with `main.js`, `manifest.json`, and `styles.css` attached.
+
+If the release step fails with a permissions error, check **Settings → Actions → General → Workflow permissions** and allow read and write permissions.
+
+You can also build and package locally with `npm run release` (creates `dist/jeffmind-<version>.zip`).
 
 ## License
 
