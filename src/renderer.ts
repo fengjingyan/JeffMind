@@ -221,17 +221,14 @@ export class MindMapRenderer {
 	render(layout: MindMapLayout, fit: boolean, theme: MindMapTheme): void {
 		this.hideCommentPopover();
 		this.theme = theme;
-		this.host.style.background = theme.background;
+		this.host.style.setProperty("--mm-theme-bg", theme.background);
+		this.host.style.setProperty("--mm-theme-font", theme.fontFamily);
 		if (theme.gridColor !== null) {
-			this.host.style.backgroundImage =
-				`linear-gradient(${theme.gridColor} 1px, transparent 1px), ` +
-				`linear-gradient(90deg, ${theme.gridColor} 1px, transparent 1px)`;
-			this.host.style.backgroundSize = "26px 26px";
+			this.host.style.setProperty("--mm-theme-grid", theme.gridColor);
+			this.host.classList.add("mm-grid");
 		} else {
-			this.host.style.backgroundImage = "";
-			this.host.style.backgroundSize = "";
+			this.host.classList.remove("mm-grid");
 		}
-		this.svg.style.fontFamily = theme.fontFamily;
 
 		this.layoutData = layout;
 		this.viewport.empty();

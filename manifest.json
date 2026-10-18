@@ -1,9 +1,10 @@
 {
 	"id": "jeffmind",
 	"name": "JeffMind",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"minAppVersion": "1.4.0",
 	"description": "Render a Markdown note as an XMind-style mind map.",
-	"author": "",
+	"author": "Jeffrey Feng",
+	"authorUrl": "https://github.com/fengjingyan",
 	"isDesktopOnly": false
 }

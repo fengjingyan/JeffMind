@@ -79,10 +79,6 @@ export default class MindMapPlugin extends Plugin {
 		this.addSettingTab(new MindMapSettingTab(this.app, this));
 	}
 
-	onunload(): void {
-		this.app.workspace.detachLeavesOfType(VIEW_TYPE_MINDMAP);
-	}
-
 	async openForActiveFile(location?: "right-sidebar" | "main"): Promise<void> {
 		const file = this.app.workspace.getActiveFile();
 		if (!file || file.extension !== "md") {

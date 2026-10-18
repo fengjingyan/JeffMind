@@ -50,7 +50,13 @@
 	flex: 1 1 auto;
 	min-height: 0;
 	overflow: hidden;
-	background: var(--background-primary);
+	background: var(--mm-theme-bg, var(--background-primary));
+}
+
+.mm-canvas.mm-grid {
+	background-image: linear-gradient(var(--mm-theme-grid) 1px, transparent 1px),
+		linear-gradient(90deg, var(--mm-theme-grid) 1px, transparent 1px);
+	background-size: 26px 26px;
 }
 
 .mm-empty {
@@ -72,8 +78,16 @@
 	height: 100%;
 	cursor: grab;
 	touch-action: none;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei",
-		"PingFang SC", "Hiragino Sans GB", sans-serif;
+	font-family: var(
+		--mm-theme-font,
+		-apple-system,
+		BlinkMacSystemFont,
+		"Segoe UI",
+		"Microsoft YaHei",
+		"PingFang SC",
+		"Hiragino Sans GB",
+		sans-serif
+	);
 }
 
 .mm-svg.mm-panning {
